@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LASHED BY DEI — Ripsihuolto ja ripsienpidennykset</title>
+  <meta name="description" content="LASHED BY DEI — ammattimainen ripsihuolto ja ripsienpidennykset. Varaa aika helposti verkossa. Laatu, hygienia ja kauneus ensisijalla." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0c0a0f;
+      --bg-soft:#14121a;
+      --text:#f6f5f7;
+      --muted:#c8c5cf;
+      --brand:#e8a7d6; /* pehmeä vaaleanpunainen */
+      --brand-2:#a173f2; /* violetti aksentti */
+      --accent:#ffdfed; /* vaalea korostus */
+      --success:#31d0aa;
+      --danger:#ff5e7e;
+      --shadow: 0 10px 30px rgba(232,167,214,.25), 0 8px 24px rgba(161,115,242,.18);
+      --radius-xl: 20px;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --container: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background: radial-gradient(1200px 800px at 80% -10%, rgba(161,115,242,.25), transparent 60%),
+                                      radial-gradient(1000px 700px at -10% 20%, rgba(232,167,214,.28), transparent 55%),
+                                      var(--bg);
+      color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* Layout */
+    .container{width:min(92%, var(--container)); margin-inline:auto}
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(12,10,15,.75), rgba(12,10,15,.25));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.04em}
+    .logo{
+      display:inline-grid; place-items:center;
+      width:44px; aspect-ratio:1; border-radius:12px; overflow:hidden; position:relative;
+      background: radial-gradient(120% 120% at 0% 0%, rgba(232,167,214,.45), rgba(161,115,242,.35) 60%, transparent 70%),
+                  linear-gradient(160deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow: var(--shadow);
+    }
+    .logo svg{width:80%; height:80%; filter: drop-shadow(0 2px 6px rgba(0,0,0,.3));}
+    .wordmark{font-family:'Playfair Display', Georgia, serif; font-weight:700; letter-spacing:.02em}
+    nav ul{list-style:none; display:flex; gap:24px; padding:0; margin:0}
+    nav a{color:var(--muted); font-weight:600}
+    nav a:hover, nav a:focus{color:var(--text)}
+    .cta{
+      padding:10px 16px; border-radius:999px; font-weight:700; letter-spacing:.02em;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2)); color:#0d0b12;
+      box-shadow: var(--shadow);
+      border:none; cursor:pointer
+    }
+
+    /* Hero */
+    .hero{position:relative; overflow:hidden}
+    .hero::before{content:""; position:absolute; inset:-20%; pointer-events:none;
+      background: radial-gradient(50% 30% at 70% 0%, rgba(232,167,214,.18), transparent 60%),
+                  radial-gradient(40% 30% at 0% 40%, rgba(161,115,242,.15), transparent 60%);
+      transform: translateZ(0);
+      filter: blur(40px);
+    }
+    .hero-inner{display:grid; grid-template-columns: 1.1fr .9fr; gap:40px; align-items:center; padding:72px 0}
+    .kicker{color:var(--accent); font-weight:700; letter-spacing:.18em; text-transform:uppercase; font-size:.84rem}
+    h1{font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.3rem, 5vw, 4.2rem); line-height:1.1; margin:10px 0 14px}
+    .lead{color:var(--muted); font-size: clamp(1rem, 1.5vw, 1.15rem)}
+    .hero-actions{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap}
+    .outline{background:transparent; border:1px solid rgba(255,255,255,.18); color:var(--text)}
+
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-xl);
+      padding:18px; display:grid; grid-template-columns: 80px 1fr; gap:16px; align-items:center;
+      box-shadow: var(--shadow)
+    }
+    .hero-card img{width:80px; height:80px; border-radius:12px; object-fit:cover}
+    .badges{display:flex; gap:10px; margin-top:16px; flex-wrap:wrap}
+    .badge{border:1px solid rgba(255,255,255,.14); color:var(--accent); padding:6px 10px; border-radius:999px; font-size:.85rem}
+
+    /* Sections */
+    section{padding:64px 0}
+    .section-title{font-family:'Playfair Display', Georgia, serif; font-size:clamp(1.6rem,3.2vw,2.3rem); margin:0 0 12px}
+    .section-lead{color:var(--muted); margin:0 0 26px}
+
+    /* Services grid */
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    .card{
+      border-radius:16px; padding:18px; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08); position:relative; overflow:hidden; box-shadow: var(--shadow);
+    }
+    .chip{position:absolute; top:12px; right:12px; font-size:.8rem; color:#0d0b12; padding:6px 10px; border-radius:999px; background: linear-gradient(135deg, var(--brand-2), var(--brand)); font-weight:800}
+    .price{font-weight:800; font-size:1.15rem; color:var(--accent)}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+
+    /* Booking */
+    .booking{display:grid; grid-template-columns: 1.1fr .9fr; gap:26px; align-items:start}
+    form{
+      display:grid; gap:12px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; box-shadow: var(--shadow)
+    }
+    label{font-weight:700; font-size:.95rem}
+    input, select, textarea{
+      width:100%; padding:12px 14px; color:var(--text); background:#100e15; border:1px solid rgba(255,255,255,.12);
+      border-radius:12px; outline:none
+    }
+    input:focus, select:focus, textarea:focus{border-color: var(--brand)}
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .note{font-size:.9rem; color:var(--muted)}
+    .policy{font-size:.85rem; color:var(--muted)}
+
+    /* Showcase */
+    .showcase{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .showcase img{border-radius:14px; height:260px; object-fit:cover; filter: saturate(1.1) contrast(1.05)}
+
+    /* Footer */
+    footer{padding:40px 0 80px; color:var(--muted); border-top:1px solid rgba(255,255,255,.08); background: radial-gradient(1000px 700px at 100% -40%, rgba(161,115,242,.16), transparent 60%) }
+    .foot{display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; align-items:start}
+    .social{display:flex; gap:12px}
+    .social a{display:inline-grid; place-items:center; width:40px; aspect-ratio:1; border-radius:10px; border:1px solid rgba(255,255,255,.12)}
+
+    /* Animations & helpers */
+    .reveal{opacity:0; transform: translateY(18px) scale(.98); transition: transform .7s cubic-bezier(.22,.61,.36,1), opacity .7s ease; will-change: transform, opacity}
+    .reveal.active{opacity:1; transform: translateY(0) scale(1)}
+    .float{animation: float 7s ease-in-out infinite; will-change: transform}
+    @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    @media (max-width: 980px){
+      :root{ --container: 940px; }
+      .hero-inner, .booking{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .showcase{grid-template-columns:1fr 1fr}
+      .foot{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      :root{ --container: 560px; }
+      nav ul{display:none}
+      .brand{gap:10px}
+      .logo{width:40px}
+      h1{font-size: clamp(2rem, 9vw, 2.4rem)}
+      .lead{font-size: 1rem}
+      .grid{grid-template-columns:1fr}
+      .showcase{grid-template-columns:1fr}
+      .showcase img{height: 48vw; border-radius:12px}
+      .two{grid-template-columns:1fr}
+      .nav{padding:10px 0}
+      section{padding:44px 0}
+      .hero-inner{gap:22px; padding:44px 0}
+      .cta{padding:12px 16px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important; transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="Etusivu">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#e8a7d6"/>
+                <stop offset="100%" stop-color="#a173f2"/>
+              </linearGradient>
+            </defs>
+            <path d="M8 32c8-12 24-12 32 0-8 12-24 12-32 0Z" fill="url(#g1)"/>
+            <circle cx="28" cy="30" r="6" fill="#0c0a0f"/>
+            <path d="M10 40c10 6 22 6 34 0" stroke="url(#g1)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="wordmark">LASHED BY DEI</span>
+      </a>
+      <nav aria-label="Päävalikko">
+        <ul>
+          <li><a href="#palvelut">Palvelut</a></li>
+          <li><a href="#galleria">Galleria</a></li>
+          <li><a href="#varaa">Varaa aika</a></li>
+          <li><a href="#yhteys">Yhteys</a></li>
+        </ul>
+      </nav>
+      <a href="#varaa" class="cta" aria-label="Varaa aika nyt">Varaa aika</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <p class="kicker">Ripsihuolto • Laatu • Hygienia</p>
+          <h1>Korosta katsettasi — kauniit, kestävät ripset ilman kompromisseja</h1>
+          <p class="lead">Ammattitaitoinen ripsihuolto ja ripsienpidennykset Helsingissä. Käytämme vain laadukkaita, hellävaraisia tuotteita. Helppo verkkoajanvaraus ja ystävällinen palvelu.</p>
+          <div class="hero-actions">
+            <a class="cta" href="#varaa">Varaa huolto</a>
+            <a class="cta outline" href="#palvelut">Tutustu palveluihin</a>
+          </div>
+          <div class="badges">
+            <span class="badge">Hygieeninen studio</span>
+            <span class="badge">Yli 300 tyytyväistä asiakasta</span>
+            <span class="badge">Laadukkaat materiaalit</span>
+          </div>
+        </div>
+        <div class="hero-card float" aria-label="Esittelykortti">
+          <img src="https://images.unsplash.com/photo-1596464716121-cf6d3bb2b3d6?q=80&w=600&auto=format&fit=crop" alt="Kauniit ripset lähikuvassa" />
+          <div>
+            <h3 style="margin:0 0 6px">LASHED BY DEI</h3>
+            <p style="margin:0; color:var(--muted)">Kestävää kauneutta yksilöllisellä otteella. Auki arkisin 10–18 ja lauantaisin 10–15.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="palvelut">
+      <div class="container">
+        <h2 class="section-title">Palvelut ja hinnasto</h2>
+        <p class="section-lead">Valitse sinulle sopivin tyyli — klassinen, hybridi tai volyymi. Huollot suositellaan 2–4 viikon välein luonnollisen ripsikasvun mukaan.</p>
+        <div class="grid">
+          <article class="card reveal">
+            <span class="chip">Suosituin</span>
+            <h3>Klassinen huolto</h3>
+            <p class="price">55 € · 60–75 min</p>
+            <ul class="list">
+              <li>Luonnollinen ja siisti lopputulos</li>
+              <li>Hellävaraiset tuotteet ja tarkka erottelu</li>
+              <li>Sis. konsultointi ja kotihoito-ohjeet</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3>Hybridi huolto</h3>
+            <p class="price">65 € · 75–90 min</p>
+            <ul class="list">
+              <li>Klassisen ja volyymin yhdistelmä</li>
+              <li>Lisää tuuheutta ja näyttävyyttä</li>
+              <li>Yksilöllinen suunnittelu kasvojesi mukaan</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3>Volyymi huolto</h3>
+            <p class="price">75 € · 90–105 min</p>
+            <ul class="list">
+              <li>Pehmeä, kevyt ja erittäin näyttävä</li>
+              <li>Monisäikeiset viuhkat käsin tehden</li>
+              <li>Maksimaalinen mukavuus ja pysyvyys</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWCASE / GALLERY -->
+    <section id="galleria">
+      <div class="container">
+        <h2 class="section-title">Galleria</h2>
+        <p class="section-lead">Aitoja tuloksia studioltamme — jokaiselle asiakkaalle räätälöity tyyli.</p>
+        <div class="showcase">
+          <img class="reveal" src="https://images.unsplash.com/photo-1596461404999-8e1d3d1b28df?q=80&w=800&auto=format&fit=crop" alt="Klassiset ripset lähikuvassa">
+          <img class="reveal" src="https://images.unsplash.com/photo-1561123871-3a8c0b6b93bf?q=80&w=800&auto=format&fit=crop" alt="Hybridiripset profiilista">
+          <img class="reveal" src="https://images.unsplash.com/photo-1596464716499-5f6b9f96e65b?q=80&w=800&auto=format&fit=crop" alt="Volyymiripset lähikuvassa">
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="varaa">
+      <div class="container">
+        <h2 class="section-title">Varaa aika</h2>
+        <p class="section-lead">Täytä tiedot ja vahvista varaus. Saat vahvistuksen sähköpostiin. Peruutukset viimeistään 24 h ennen aikaa.</p>
+        <div class="booking">
+          <form id="bookingForm" novalidate aria-labelledby="form-title">
+            <h3 id="form-title" style="margin:0 0 6px">Varauslomake</h3>
+            <div class="two">
+              <div>
+                <label for="name">Nimi</label>
+                <input id="name" name="name" type="text" placeholder="Etunimi Sukunimi" required>
+              </div>
+              <div>
+                <label for="phone">Puhelin</label>
+                <input id="phone" name="phone" type="tel" placeholder="040 123 4567" required>
+              </div>
+            </div>
+            <div class="two">
+              <div>
+                <label for="email">Sähköposti</label>
+                <input id="email" name="email" type="email" placeholder="nimi@esimerkki.fi" required>
+              </div>
+              <div>
+                <label for="service">Palvelu</label>
+                <select id="service" name="service" required>
+                  <option value="" disabled selected>Valitse palvelu</option>
+                  <option>Klassinen huolto</option>
+                  <option>Hybridi huolto</option>
+                  <option>Volyymi huolto</option>
+                </select>
+              </div>
+            </div>
+            <div class="two">
+              <div>
+                <label for="date">Päivämäärä</label>
+                <input id="date" name="date" type="date" required>
+              </div>
+              <div>
+                <label for="time">Aika</label>
+                <select id="time" name="time" required>
+                  <option value="" disabled selected>Valitse aika</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="notes">Lisätiedot (valinnainen)</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Esim. toiveesi tyylistä, allergiat, aiempi kokemus..."></textarea>
+            </div>
+            <label class="policy"><input type="checkbox" id="policy" required> Olen lukenut peruutus- ja hygieniaohjeet</label>
+            <button class="cta" type="submit">Vahvista varaus</button>
+            <p class="note" id="formNote">Tietosi käsitellään luottamuksellisesti emmekä jaa niitä kolmansille osapuolille.</p>
+          </form>
+          <aside aria-live="polite">
+            <div class="card">
+              <h3 style="margin-top:0">Aukioloajat</h3>
+              <p class="note" style="margin-top:6px">Ma–Pe 10–18 • La 10–15 • Su sopimuksen mukaan</p>
+              <h3>Peruutuskäytäntö</h3>
+              <p class="note">Peruutukset viimeistään 24 h ennen varattua aikaa. Myöhemmistä peruutuksista tai saapumatta jättämisestä veloitetaan 50 % palvelun hinnasta.</p>
+              <h3>Hygienia</h3>
+              <p class="note">Käytämme kertakäyttöisiä tarvikkeita ja desinfioimme työpisteen jokaisen asiakkaan jälkeen. Tulethan paikalle ilman silmämeikkiä parhaimman pysyvyyden takaamiseksi.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / FOOTER -->
+    <footer id="yhteys">
+      <div class="container foot">
+        <div>
+          <div class="brand" style="margin-bottom:10px">
+            <span class="logo" aria-hidden="true" style="width:34px">
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="g1f" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#e8a7d6"/>
+                    <stop offset="100%" stop-color="#a173f2"/>
+                  </linearGradient>
+                </defs>
+                <path d="M8 32c8-12 24-12 32 0-8 12-24 12-32 0Z" fill="url(#g1f)"/>
+                <circle cx="28" cy="30" r="6" fill="#0c0a0f"/>
+                <path d="M10 40c10 6 22 6 34 0" stroke="url(#g1f)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <strong class="wordmark">LASHED BY DEI</strong>
+          </div>
+          <p>Studio Helsingin keskustassa. Laadukas ripsihuolto ja ripsienpidennykset. Tervetuloa hemmottelemaan katsettasi.</p>
+          <div class="social" aria-label="Sosiaalinen media">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a href="mailto:bookings@lashedbydei.fi" aria-label="Sähköposti">@</a>
+            <a href="tel:+358401234567" aria-label="Soita">Puh</a>
+          </div>
+        </div>
+        <div>
+          <h3 style="margin-top:0">Yhteystiedot</h3>
+          <p class="note">Kalevankatu 12, 00100 Helsinki</p>
+          <p class="note">Puhelin: <a href="tel:+358401234567">+358 40 123 4567</a></p>
+          <p class="note">Sähköposti: <a href="mailto:bookings@lashedbydei.fi">bookings@lashedbydei.fi</a></p>
+          <p class="note">Y-tunnus: 1234567-8</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Helper: intersection-based reveal animations
+    const onIntersect = entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const delay = e.target.dataset.delay ? parseFloat(e.target.dataset.delay) : 0;
+          setTimeout(()=> e.target.classList.add('active'), delay);
+        }
+      });
+    };
+    const io = new IntersectionObserver(onIntersect, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach((el, i) => { el.dataset.delay = (i%3)*100; io.observe(el); });
+
+    // Booking: generate time slots and basic validation + confirmation
+    const timeSelect = document.getElementById('time');
+    const dateInput = document.getElementById('date');
+
+    function generateSlots() {
+      timeSelect.innerHTML = '<option value="" disabled selected>Valitse aika</option>';
+      // Working hours: 10:00 - 18:00 every 30 min. Saturdays until 15:00
+      const d = dateInput.value ? new Date(dateInput.value + 'T12:00:00') : new Date();
+      const day = d.getDay(); // 0 Sun ... 6 Sat
+      const endHour = (day === 6) ? 15 : 18; // Saturday shorter
+      const start = new Date(d); start.setHours(10,0,0,0);
+      const end = new Date(d); end.setHours(endHour,0,0,0);
+      for(let t = new Date(start); t < end; t.setMinutes(t.getMinutes()+30)){
+        const hh = String(t.getHours()).padStart(2,'0');
+        const mm = String(t.getMinutes()).padStart(2,'0');
+        const opt = document.createElement('option');
+        opt.value = opt.textContent = `${hh}:${mm}`;
+        timeSelect.appendChild(opt);
+      }
+    }
+
+    // Set min date to today
+    const today = new Date();
+    dateInput.min = today.toISOString().split('T')[0];
+    dateInput.addEventListener('change', generateSlots);
+    generateSlots();
+
+    // Simple persistence and confirmation
+    const form = document.getElementById('bookingForm');
+    const note = document.getElementById('formNote');
+
+    function saveLocal(payload){
+      try{ localStorage.setItem('lashedbydei.booking', JSON.stringify(payload)); }catch(e){}
+    }
+    function loadLocal(){
+      try{ return JSON.parse(localStorage.getItem('lashedbydei.booking')||'null'); }catch(e){ return null; }
+    }
+    // Prefill if exists
+    const saved = loadLocal();
+    if(saved){
+      for(const k of ['name','phone','email','service','date','time','notes']){
+        const el = document.getElementById(k);
+        if(el && saved[k]) el.value = saved[k];
+      }
+      if(saved.date){ generateSlots(); timeSelect.value = saved.time || ''; }
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      // Validate
+      const requiredIds = ['name','phone','email','service','date','time','policy'];
+      let valid = true;
+      requiredIds.forEach(id => {
+        const el = document.getElementById(id);
+        if(!el) return;
+        const ok = (el.type === 'checkbox') ? el.checked : !!el.value;
+        el.style.borderColor = ok ? 'rgba(255,255,255,.12)' : 'var(--danger)';
+        if(!ok) valid = false;
+      });
+      if(!valid){
+        note.textContent = 'Tarkista puuttuvat kentät ennen lähettämistä.';
+        note.style.color = 'var(--danger)';
+        return;
+      }
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        service: document.getElementById('service').value,
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+        notes: document.getElementById('notes').value.trim()
+      };
+      saveLocal(payload);
+
+      // Show confirmation overlay-like toast
+      const wrap = document.createElement('div');
+      wrap.style.position='fixed';
+      wrap.style.inset='0';
+      wrap.style.display='grid';
+      wrap.style.placeItems='center';
+      wrap.style.background='rgba(0,0,0,.55)';
+      wrap.style.backdropFilter='blur(4px)';
+      wrap.setAttribute('role','dialog');
+      wrap.setAttribute('aria-modal','true');
+
+      const panel = document.createElement('div');
+      panel.style.maxWidth='520px';
+      panel.style.width='90%';
+      panel.style.border='1px solid rgba(255,255,255,.12)';
+      panel.style.borderRadius='16px';
+      panel.style.padding='18px';
+      panel.style.background='linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02))';
+      panel.style.boxShadow='var(--shadow)';
+      panel.innerHTML = `
+        <h3 style="margin-top:0">Varausvahvistus</h3>
+        <p>Kiitos ${payload.name}! Aikasi on alustavasti varattu:</p>
+        <ul style="margin-top:6px; color:var(--muted)">
+          <li>Palvelu: <strong>${payload.service}</strong></li>
+          <li>Päivä: <strong>${payload.date}</strong></li>
+          <li>Kellonaika: <strong>${payload.time}</strong></li>
+        </ul>
+        <p style="color:var(--muted)">Saat vahvistussähköpostin osoitteeseen <strong>${payload.email}</strong>. Tarvittaessa olemme yhteydessä puhelimitse (${payload.phone}).</p>
+        <div style="display:flex; gap:10px; margin-top:12px; justify-content:flex-end">
+          <button id="closeToast" class="cta outline">Sulje</button>
+          <a class="cta" href="mailto:bookings@lashedbydei.fi?subject=Varaus%20${encodeURIComponent(payload.date)}%20${encodeURIComponent(payload.time)}&body=${encodeURIComponent('Hei, vahvistan varaukseni. Terveisin, ' + payload.name)}">Lähetä sähköpostivahvistus</a>
+        </div>
+      `;
+      wrap.appendChild(panel);
+      document.body.appendChild(wrap);
+      panel.querySelector('#closeToast').focus();
+      wrap.addEventListener('click', (ev)=>{ if(ev.target === wrap) wrap.remove(); });
+      panel.querySelector('#closeToast').addEventListener('click', ()=> wrap.remove());
+
+      note.textContent = 'Varaus vastaanotettu. Tarkista sähköposti vahvistusta varten.';
+      note.style.color = 'var(--success)';
+      form.reset();
+      generateSlots();
+    });
+  </script>
+</body>
+</html>
